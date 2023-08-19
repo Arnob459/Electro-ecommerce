@@ -8,6 +8,8 @@ use App\Models\Promotion;
 use App\Models\Slider;
 use App\Models\Link;
 use Illuminate\Support\Facades\Storage;
+use Image;
+
 
 
 
@@ -46,13 +48,16 @@ class PagesController extends Controller
         ]);
         $promotion = new Promotion;
 
-        $image = $request->file('picture');
-        $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-        $request->picture->move(public_path('upload'),$img_name);
-        $img_url = 'upload/' . $img_name;
-        $promotion->picture = $img_url;
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $filename = time() . '_' . $image->getClientOriginalExtension();
+            $imagePath = public_path( $filename);
 
+            // Resize the image
+            Image::make($image)->resize(500, 266)->save($imagePath);
 
+            $promotion->picture =  $filename;
+        }
 
         $promotion->link = $request->link;
         $promotion->save();
@@ -69,17 +74,16 @@ class PagesController extends Controller
 
         $promotion = Promotion::find($id);
 
-
-
-        if($request->file('picture')){
+        if ($request->hasFile('picture')) {
             $image = $request->file('picture');
-            $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-            $request->picture->move(public_path('upload'),$img_name);
-            $img_url = 'upload/' . $img_name;
-            $promotion->picture = $img_url;
+            $filename = time() . '_' . $image->getClientOriginalExtension();
+            $imagePath = public_path( $filename);
 
-            }
+            // Resize the image
+            Image::make($image)->resize(500, 266)->save($imagePath);
 
+            $promotion->picture =  $filename;
+        }
         $promotion->link = $request->link;
 
         $promotion->save();
@@ -110,22 +114,20 @@ class PagesController extends Controller
         $this->validate($request, [
             'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        $slider = new Slider;
 
+        if ($request->hasFile('picture')) {
         $image = $request->file('picture');
-        $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-        $request->picture->move(public_path('upload'),$img_name);
-        $img_url = 'upload/' . $img_name;
-        $slider->picture = $img_url;
+        $filename = time() . '_' . $image->getClientOriginalExtension();
+        $imagePath = public_path( $filename);
 
-        // $pic_file = $request->file('picture');
-        // Storage::putFile('public/img/', $pic_file);
-        // $voucher->picture = "storage/img/".$pic_file->hashName();
+        // Resize the image
+        Image::make($image)->fit(1920, 600)->save($imagePath);
 
+        $slider = new Slider();
+        $slider->picture =  $filename;
         $slider->save();
-
         return redirect()->route('slider.list')->with('success','New slider Create Successfully');
-
+        }
     }
 
     public function SliderEdit($id) {
@@ -133,20 +135,23 @@ class PagesController extends Controller
         return view('admin.frontend.slider.edit', compact('slider'));
     }
     public function SliderUpdate(Request $request, $id){
+        $this->validate($request, [
+            'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
         $slider = Slider::find($id);
 
-        if($request->file('picture')){
-        $image = $request->file('picture');
-        $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-        $request->picture->move(public_path('upload'),$img_name);
-        $img_url = 'upload/' . $img_name;
-        $slider->picture = $img_url;
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $filename = time() . '_' . $image->getClientOriginalExtension();
+            $imagePath = public_path( $filename);
+            // Resize the image
+            Image::make($image)->resize(1180, 500)->save($imagePath);
 
+            $slider->picture =  $filename;
+            $slider->save();
         }
-
         $slider->save();
-
         return redirect()->route('slider.list')->with('success','slider Information Updated Successfully');
     }
     public function SliderDelete($id){
@@ -272,15 +277,26 @@ class PagesController extends Controller
         $main->site_name = $request->site_name;
 
         if($request->file('logo')){
-            $img_file = $request->file('logo');
-            $img_file->storeAs('public/img/','logo.' . $img_file->getClientOriginalExtension());
-            $main->logo = 'storage/img/logo.' . $img_file->getClientOriginalExtension();
+            // $img_file = $request->file('logo');
+            // $img_file->storeAs('public/img/','logo.' . $img_file->getClientOriginalExtension());
+            // $main->logo = 'storage/img/logo.' . $img_file->getClientOriginalExtension();
+
+
+            $image = $request->file('logo');
+            $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
+            $request->logo->move(public_path(''),$img_name);
+            $img_url =  $img_name;
+            $main->logo = $img_url;
+
         }
 
         if($request->file('favicon')){
-            $img_file = $request->file('favicon');
-            $img_file->storeAs('public/img/','favicon.' . $img_file->getClientOriginalExtension());
-            $main->favicon = 'storage/img/favicon.' . $img_file->getClientOriginalExtension();
+
+            $image = $request->file('favicon');
+            $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
+            $request->favicon->move(public_path(''),$img_name);
+            $img_url =  $img_name;
+            $main->favicon = $img_url;
         }
         $main->save();
         return redirect()->route('logo.view')->with('success', "Genaral has been updated successfully");

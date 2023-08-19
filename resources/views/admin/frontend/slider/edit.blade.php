@@ -20,7 +20,7 @@
             <label class="col-sm-2 col-form-label" for="basic-default-name"> Image</label>
             <div class="col-sm-10">
             <img style="height: 20vh" src="{{url($slider->picture)}}" class="img-thumbnail"> <br>
-            <label >Supported files: jpeg, jpg, png. | Will be resized to: 500x266 px.</label>
+            <label >Supported files: jpeg, jpg, png. | Will be resized to: 1922x602 px.</label>
 
               <input type="file" class="form-control" id="picture" name="picture"  />
             </div>
