@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="mb-6">
-                                <a href="#" class="d-inline-block">
+                                <a href="#" class="order-1 order-xl-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-center">
                                     <img src="{{ $main->logo }}" alt="">
 
                                 </a>
