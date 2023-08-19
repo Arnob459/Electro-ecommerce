@@ -107,10 +107,18 @@
                 <ul class="menu-sub">
 
               <li class="menu-item ">
-                <a href="" class="menu-link">
+                <a href="{{ route('logo.view') }}" class="menu-link">
                   <div data-i18n="Analytics">Genaral Setting</div>
                 </a>
               </li>
+
+              <li class="menu-item ">
+                <a href="{{ route('header.view') }}" class="menu-link">
+                  <div data-i18n="Analytics">Header </div>
+                </a>
+              </li>
+
+
 
               <li class="menu-item">
                 <a href="{{ route('slider.list') }}" class="menu-link">
@@ -125,10 +133,12 @@
               </li>
 
               <li class="menu-item ">
-                <a href="" class="menu-link">
+                <a href="{{ route('contact.view') }}" class="menu-link">
                   <div data-i18n="Analytics">Contact </div>
                 </a>
               </li>
+
+
                 </ul>
             </li>
         </ul>

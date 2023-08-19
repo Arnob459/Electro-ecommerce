@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\Promotion;
 use App\Models\Slider;
+use App\Models\Link;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -14,10 +16,13 @@ class PagesController extends Controller
     //
 
     public function index(){
+        $main = Page::first();
         $promotions = Promotion::all();
         $sliders = Slider::all();
+        $links = Link::all();
 
-        return view('frontend.frontend',compact('promotions','sliders'));
+
+        return view('frontend.frontend',compact('promotions','sliders','links','main'));
     }
 
     public function Dashboard(){
@@ -47,9 +52,7 @@ class PagesController extends Controller
         $img_url = 'upload/' . $img_name;
         $promotion->picture = $img_url;
 
-        // $pic_file = $request->file('picture');
-        // Storage::putFile('public/img/', $pic_file);
-        // $voucher->picture = "storage/img/".$pic_file->hashName();
+
 
         $promotion->link = $request->link;
         $promotion->save();
@@ -66,18 +69,24 @@ class PagesController extends Controller
 
         $promotion = Promotion::find($id);
 
-        $image = $request->file('picture');
-        $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
-        $request->picture->move(public_path('upload'),$img_name);
-        $img_url = 'upload/' . $img_name;
 
-        $promotion->picture = $img_url;
+
+        if($request->file('picture')){
+            $image = $request->file('picture');
+            $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
+            $request->picture->move(public_path('upload'),$img_name);
+            $img_url = 'upload/' . $img_name;
+            $promotion->picture = $img_url;
+
+            }
+
         $promotion->link = $request->link;
 
         $promotion->save();
 
         return redirect()->route('promotion.list')->with('success','Promotion Information Updated Successfully');
     }
+
     public function PromotionDelete($id){
         $promotion = Promotion::find($id);
         $promotion ->delete();
@@ -127,12 +136,15 @@ class PagesController extends Controller
 
         $slider = Slider::find($id);
 
+        if($request->file('picture')){
         $image = $request->file('picture');
         $img_name = hexdec(uniqid()).'.'. $image->getClientOriginalExtension();
         $request->picture->move(public_path('upload'),$img_name);
         $img_url = 'upload/' . $img_name;
-
         $slider->picture = $img_url;
+
+        }
+
         $slider->save();
 
         return redirect()->route('slider.list')->with('success','slider Information Updated Successfully');
@@ -144,34 +156,135 @@ class PagesController extends Controller
 
     }
 
-            //About
-            public function AboutView(){
-                $main = Page::first();
+    //Header
+    public function HeaderView(){
+        $main = Page::first();
 
-                return view('admin.frontend.about.view',compact('main'));
-            }
+        return view('admin.frontend.header.view',compact('main'));
+    }
 
-            public function AboutUpdate(Request $request){
+    public function HeaderUpdate(Request $request){
 
-                $this->validate($request, [
-                    'welcome_text' => 'required|string|max:255',
-                    'site_name' => 'required|string|max:2048'
+        $this->validate($request, [
+            'track_text' => 'required|string|max:20',
+            'welcome_text' => 'required|string|max:255',
 
-                ]);
+        ]);
 
-                $main = Page::first();
-                $main->welcome_text = $request->welcome_text;
-                $main->site_name = $request->site_name;
+        $main = Page::first();
+        $main->welcome_text = $request->welcome_text;
+        $main->track_text = $request->track_text;
+        $main->save();
+        return redirect()->route('header.view')->with('success', "Header has been updated successfully");
+        }
 
-                if($request->file('logo')){
-                    $img_file = $request->file('logo');
-                    $img_file->storeAs('public/img/','logo.' . $img_file->getClientOriginalExtension());
-                    $main->logo = 'storage/img/logo.' . $img_file->getClientOriginalExtension();
-                }
-                $main->save();
-                return redirect()->route('about.view')->with('success', "About has been updated successfully");
-            }
+    //footer
+    public function FooterView(){
+        $main = Page::first();
+        $links = Link::all();
 
+        return view('admin.frontend.contact.view',compact('main','links'));
+    }
+
+    public function FooterUpdate(Request $request){
+
+        $this->validate($request, [
+            'footer_title' => 'required|string|max:50',
+            'contact_title' => 'required|string|max:50',
+            'contact_phone' => 'required|string|max:50',
+            'contact_address_title' => 'required|string|max:50',
+            'contact_address' => 'required|string|max:100',
+            'copyright' => 'required|string|max:50',
+        ]);
+
+        $main = Page::first();
+
+        $main->footer_title = $request->footer_title;
+        $main->contact_title = $request->contact_title;
+        $main->contact_phone = $request->contact_phone;
+        $main->contact_address_title = $request->contact_address_title;
+        $main->contact_address = $request->contact_address;
+        $main->copyright = $request->copyright;
+
+        $main->save();
+        return redirect()->route('contact.view')->with('success', "Contact has been updated successfully");
+    }
+
+    public function LinkCreate(){
+
+        return view('admin.frontend.contact.create');
+    }
+
+    public function LinkStore(Request $request){
+
+        $this->validate($request, [
+            'icon' => 'required|string|max:255',
+            'link' => 'required|string|max:255',
+
+        ]);
+        $link = new Link;
+        $link->icon = $request->icon;
+        $link->link = $request->link;
+        $link->save();
+
+        return redirect()->route('contact.view')->with('success','Contact Icon Link Create Successfully');
+
+    }
+
+    public function LinkEdit($id) {
+        $link = Link::find($id);
+        return view('admin.frontend.contact.edit', compact('link'));
+    }
+    public function LinkUpdate(Request $request, $id){
+
+        $link = Link::find($id);
+        $link->icon = $request->icon;
+        $link->link = $request->link;
+        $link->save();
+
+        return redirect()->route('contact.view')->with('success','Contact Information  Updated Successfully');
+    }
+    public function LinkDelete($id){
+        $link = Link::find($id);
+        $link ->delete();
+        return redirect()->route('contact.view')->with('success','Contact Information Deleted Successfully');
+
+    }
+
+
+
+    //Logo
+    public function LogoView(){
+        $main = Page::first();
+        return view('admin.frontend.logo.view',compact('main'));
+    }
+
+    public function LogoUpdate(Request $request){
+
+        $this->validate($request, [
+            'site_name' => 'required|string|max:20',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'favicon' => 'image|mimes:jpeg,png,jpg,ico|max:1024',
+
+        ]);
+
+        $main = Page::first();
+        $main->site_name = $request->site_name;
+
+        if($request->file('logo')){
+            $img_file = $request->file('logo');
+            $img_file->storeAs('public/img/','logo.' . $img_file->getClientOriginalExtension());
+            $main->logo = 'storage/img/logo.' . $img_file->getClientOriginalExtension();
+        }
+
+        if($request->file('favicon')){
+            $img_file = $request->file('favicon');
+            $img_file->storeAs('public/img/','favicon.' . $img_file->getClientOriginalExtension());
+            $main->favicon = 'storage/img/favicon.' . $img_file->getClientOriginalExtension();
+        }
+        $main->save();
+        return redirect()->route('logo.view')->with('success', "Genaral has been updated successfully");
+    }
 
 
 

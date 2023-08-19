@@ -22,7 +22,7 @@
             <img style="height: 20vh" src="{{url($promotion->picture)}}" class="img-thumbnail"> <br>
             <label >Supported files: jpeg, jpg, png. | Will be resized to: 500x266 px.</label>
 
-              <input type="file" class="form-control" id="picture" name="picture" required />
+              <input type="file" class="form-control" id="picture" name="picture"  />
             </div>
             </div>
 

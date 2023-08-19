@@ -48,13 +48,22 @@ Route::get('slider/delete/{id}',[PagesController::class,'SliderDelete'])->name('
 Route::get('/about/view',[PagesController::class,'AboutView'])->name('about.view');
 Route::post('/about/view',[PagesController::class,'AboutUpdate'])->name('about.update');
 
+//Logo And Favicon
+Route::get('/logo/view',[PagesController::class,'LogoView'])->name('logo.view');
+Route::post('/logo/view',[PagesController::class,'LogoUpdate'])->name('logo.update');
+
 //Header
 Route::get('/header/view',[PagesController::class,'HeaderView'])->name('header.view');
 Route::post('/header/view',[PagesController::class,'HeaderUpdate'])->name('header.update');
 
-//Footer
-Route::get('/about/view',[PagesController::class,'FooterView'])->name('about.view');
-Route::post('/about/view',[PagesController::class,'FooterUpdate'])->name('about.update');
+//Footer/contact
+Route::get('/contact/view',[PagesController::class,'FooterView'])->name('contact.view');
+Route::post('/contact/view',[PagesController::class,'FooterUpdate'])->name('contact.update');
+Route::get('link/create',[PagesController::class,'LinkCreate'])->name('link.create');
+Route::post('link/create',[PagesController::class,'LinkStore'])->name('link.store');
+Route::get('link/edit/{id}',[PagesController::class,'LinkEdit'])->name('link.edit');
+Route::post('link/update/{id}',[PagesController::class,'LinkUpdate'])->name('link.update');
+Route::get('link/delete/{id}',[PagesController::class,'LinkDelete'])->name('link.delete');
 
 //category
 Route::controller(CategoryController::class)->group(function(){

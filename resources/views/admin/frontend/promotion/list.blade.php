@@ -36,7 +36,7 @@
                 <td>
                     <img style="height: 10vh" src="{{url($promotion->picture)}}" alt="picture">
                 </td>
-                <td>{{ $promotion->title }}</td>
+                <td>{{ $promotion->link }}</td>
 
                 <td>
                     <a href="{{ route('promotion.edit', $promotion->id) }}" class="btn btn-primary">Edit</a>
