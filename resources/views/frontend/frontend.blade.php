@@ -547,8 +547,8 @@
                                 <img  src="{{ $slider->picture }}" alt="Image Description">
                             </div>
                         </div>
-                    @endforeach
                     </div>
+                    @endforeach
                 </div>
             </div>
     </div>
