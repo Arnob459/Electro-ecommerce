@@ -2,10 +2,8 @@
 
 @section('content')
 
-
-
  <!-- ========== HEADER ========== -->
- <header id="header" class="u-header u-header-left-aligned-nav">
+ <header id="header" class="u-header u-header-left-aligned-nav mb-4">
     <div class="u-header__section">
         <!-- Topbar -->
         <div class="u-header-topbar py-2 d-none d-xl-block">
@@ -268,245 +266,132 @@
 
 <!-- ========== MAIN CONTENT ========== -->
 <main id="content" role="main">
-    <!-- Slider Section -->
-    <div class="mb-4">
-        <div class=" overflow-hidden">
 
-            <div class="js-slick-carousel u-slick"
-                data-pagi-classes="text-center position-absolute right-0 bottom-0 left-0 u-slick__pagination u-slick__pagination--long justify-content-center mb-3 mb-md-4">
-                @foreach ($sliders as $slider)
-                    <div class="js-slide">
-                        <div class="row ">
-                            <div class="col-xl-12 col-12"
-                                data-scs-animation-in="fadeInRight"
-                                data-scs-animation-delay="500">
-                                <img class="img-fluid " src="{{ $slider->picture }}" alt="Image Description">
+    <div class="container">
+        <!-- Single Product Body -->
+        <div class="mb-xl-14 mb-6">
+            <div class="row">
+                <div class="col-md-5 mb-4 mb-md-0">
+                    <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
+                        data-infinite="true"
+                        data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
+                        data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
+                        data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
+                        data-nav-for="#sliderSyncingThumb">
+                        <div class="js-slide">
+                            <img class="img-fluid" src="{{ asset('assets/frontend/img/75X75/4.png') }}" alt="Image Description">
+                        </div>
+
+                    </div>
+
+                    <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
+                        data-infinite="true"
+                        data-slides-show="5"
+                        data-is-thumbs="true"
+                        data-nav-for="#sliderSyncingNav">
+                        <div class="js-slide" style="cursor: pointer;">
+                            <img class="img-fluid" src="../../assets/frontend/img/75X75/4.png" alt="Image Description">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-7 mb-md-6 mb-lg-0">
+                    <div class="mb-2">
+                        <div class="border-bottom mb-3 pb-md-1 pb-3">
+                            <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Headphones</a>
+                            <h2 class="font-size-25 text-lh-1dot2">Ultra Wireless S50 Headphones S50 with Bluetooth</h2>
+
+                            <div class="d-md-flex align-items-center">
+                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">26 in stock</span></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <ul class="font-size-14 pl-3 ml-1 text-gray-110">
+                                <li>4.5 inch HD Touch Screen (1280 x 720)</li>
+                            </ul>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                        <p><strong>SKU</strong>: FW511948218</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-baseline">
+                                <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
+                            </div>
+                        </div>
+
+                        <div class="d-md-flex align-items-end mb-3">
+                            <div class="max-width-150 mb-4 mb-md-0">
+                                <h6 class="font-size-14">Quantity</h6>
+                                <!-- Quantity -->
+                                <div class="border rounded-pill py-2 px-3 border-color-1">
+                                    <div class="js-quantity row align-items-center">
+                                        <div class="col">
+                                            <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="1">
+                                        </div>
+                                        <div class="col-auto pr-1">
+                                            <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                <small class="fas fa-minus btn-icon__inner"></small>
+                                            </a>
+                                            <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                <small class="fas fa-plus btn-icon__inner"></small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Quantity -->
+                            </div>
+                            <div class="ml-md-3">
+                                <a href="#" class="btn px-5 btn-primary-dark transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
-    </div>
+        <!-- End Single Product Body -->
+        <!-- Single Product Tab -->
+        <div class="mb-8">
+            <div class="position-relative position-md-static px-md-6">
+                <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-0 pb-1 pb-xl-0 mb-n1 mb-xl-0" id="pills-tab-8" role="tablist">
 
-    <!-- End Slider Section -->
-    <div class="container">
-        <!-- Banner -->
-        <div class="row mb-6  ">
-
-                @foreach ($promotions as $promotion)
-                <div class="col-4 mb-4  pr-0">
-                    <a href="{{ $promotion->link }}">
-                    <img class="img-fluid" src="{{ $promotion->picture }}" alt="Image Description">
-                    </a>
-                </div>
-                @endforeach
-
-        </div>
-        <!-- End Banner -->
-
-        <!-- Tab Prodcut Section -->
-        <div class="mb-6">
-            <!-- Nav Classic -->
-            <div class="position-relative bg-white text-center z-index-2">
-                <ul class="nav nav-classic nav-tab justify-content-center" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active js-animation-link" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="true"
-                            data-target="#pills-one-example1"
-                            data-link-group="groups"
-                            data-animation-in="slideInUp">
-                            <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                Featured
-                            </div>
-                        </a>
+                    <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                        <a class="nav-link" id="Jpills-two-example1-tab" data-toggle="pill" href="#Jpills-two-example1" role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Description</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                        <a class="nav-link" id="Jpills-three-example1-tab" data-toggle="pill" href="#Jpills-three-example1" role="tab" aria-controls="Jpills-three-example1" aria-selected="false">Terms & Condition</a>
+                    </li>
+                    <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                        <a class="nav-link" id="Jpills-four-example1-tab" data-toggle="pill" href="#Jpills-four-example1" role="tab" aria-controls="Jpills-four-example1" aria-selected="false">HOW TO REDEEM</a>
                     </li>
                 </ul>
             </div>
-            <!-- End Nav Classic -->
             <!-- Tab Content -->
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade pt-2 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
-                    <ul class="row list-unstyled products-group no-gutters">
+            <div class="borders-radius-17 border p-4 mt-4 mt-md-0 px-lg-10 py-lg-9">
+                <div class="tab-content" id="Jpills-tabContent">
 
+                    <div class="tab-pane fade" id="Jpills-two-example1" role="tabpanel" aria-labelledby="Jpills-two-example1-tab">
+                        <h3 class="font-size-24 mb-3">Perfectly Done</h3>
+                        <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu.</p>
 
-                        <li class="col-6 col-md-4 col-xl product-item remove-divider-xl">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner px-xl-4 p-3">
-                                    <div class="product-item__body pb-xl-2">
-                                        <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                        <h5 class="mb-1 product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Smartphone 6S 32GB LTE</a></h5>
-                                        <div class="mb-2">
-                                            <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src=" assets/frontend/img/212X200/img4.jpg" alt="Image Description"></a>
-                                        </div>
-                                        <div class="flex-center-between mb-1">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="tab-pane fade" id="Jpills-three-example1" role="tabpanel" aria-labelledby="Jpills-three-example1-tab">
+                        <h3 class="font-size-24 mb-3">Perfectly Done</h3>
+                        <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu.</p>
 
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-6 col-md-4 col-xl product-item remove-divider-xl">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner px-xl-4 p-3">
-                                    <div class="product-item__body pb-xl-2">
-                                        <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                        <h5 class="mb-1 product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Smartphone 6S 32GB LTE</a></h5>
-                                        <div class="mb-2">
-                                            <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src=" assets/frontend/img/212X200/img4.jpg" alt="Image Description"></a>
-                                        </div>
-                                        <div class="flex-center-between mb-1">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$685,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="tab-pane fade" id="Jpills-four-example1" role="tabpanel" aria-labelledby="Jpills-four-example1-tab">
+                        <h3 class="font-size-24 mb-3">Perfectly Done</h3>
+                        <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu.</p>
 
-                                </div>
-                            </div>
-                        </li>
-
-
-                    </ul>
+                    </div>
                 </div>
-
             </div>
             <!-- End Tab Content -->
         </div>
-        <!-- End Tab Prodcut Section -->
-    </div>
-    <!-- Television Entertainment -->
-
-    <!-- End Television Entertainment -->
-    <div class="container">
-        <!-- Laptops & Computers -->
-        <div class="mb-6 position-relative">
-            <dv class="d-flex justify-content-between border-bottom border-color-1 flex-md-nowrap flex-wrap border-sm-bottom-0">
-                <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">Laptops & Computers</h3>
-            </dv>
-            <div class="js-slick-carousel position-static u-slick u-slick--gutters-1 overflow-hidden u-slick-overflow-visble pt-3 pb-3"
-                data-arrows-classes="position-absolute top-0 font-size-17 u-slick__arrow-normal top-10"
-                data-arrow-left-classes="fa fa-angle-left right-1"
-                data-arrow-right-classes="fa fa-angle-right right-0"
-                data-pagi-classes="text-center right-0 bottom-1 left-0 u-slick__pagination u-slick__pagination--long mb-0 z-index-n1 mt-4">
-                <div class="js-slide">
-                    <ul class="row list-unstyled products-group no-gutters mb-0 overflow-visible">
-
-                        <li class="col-md-3 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto col-xl-5 col-wd-auto product-media-left">
-                                        <a href="{{ route('product.details') }}" class="max-width-150 d-block"><img class="img-fluid" src=" assets/frontend/img/150X140/img1.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col col-xl-7 col-wd product-item__body pl-2 pl-lg-3 pl-xl-0 pl-wd-3 mr-wd-1">
-                                        <div class="mb-4 mb-xl-2 mb-wd-6">
-                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Tablets</a></div>
-                                            <h5 class="product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Tablet Air 3 WiFi 64GB Gold</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$629,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="col-md-3 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto col-xl-5 col-wd-auto product-media-left">
-                                        <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="max-width-150 d-block"><img class="img-fluid" src=" assets/frontend/img/150X140/img1.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col col-xl-7 col-wd product-item__body pl-2 pl-lg-3 pl-xl-0 pl-wd-3 mr-wd-1">
-                                        <div class="mb-4 mb-xl-2 mb-wd-6">
-                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Tablets</a></div>
-                                            <h5 class="product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Tablet Air 3 WiFi 64GB Gold</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$629,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="col-md-3 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto col-xl-5 col-wd-auto product-media-left">
-                                        <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="max-width-150 d-block"><img class="img-fluid" src=" assets/frontend/img/150X140/img1.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col col-xl-7 col-wd product-item__body pl-2 pl-lg-3 pl-xl-0 pl-wd-3 mr-wd-1">
-                                        <div class="mb-4 mb-xl-2 mb-wd-6">
-                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Tablets</a></div>
-                                            <h5 class="product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Tablet Air 3 WiFi 64GB Gold</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$629,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="col-md-3 product-item product-item__card pb-2 mb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                            <div class="product-item__outer h-100 w-100">
-                                <div class="product-item__inner p-md-3 row no-gutters">
-                                    <div class="col col-lg-auto col-xl-5 col-wd-auto product-media-left">
-                                        <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="max-width-150 d-block"><img class="img-fluid" src=" assets/frontend/img/150X140/img1.jpg" alt="Image Description"></a>
-                                    </div>
-                                    <div class="col col-xl-7 col-wd product-item__body pl-2 pl-lg-3 pl-xl-0 pl-wd-3 mr-wd-1">
-                                        <div class="mb-4 mb-xl-2 mb-wd-6">
-                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Tablets</a></div>
-                                            <h5 class="product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">Tablet Air 3 WiFi 64GB Gold</a></h5>
-                                        </div>
-                                        <div class="flex-center-between mb-3">
-                                            <div class="prodcut-price">
-                                                <div class="text-gray-100">$629,00</div>
-                                            </div>
-                                            <div class="d-none d-xl-block prodcut-add-cart">
-                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-        <!-- End Laptops & Computers -->
+        <!-- End Single Product Tab -->
 
 
     </div>
-
-
 </main>
 <!-- ========== END MAIN CONTENT ========== -->
 

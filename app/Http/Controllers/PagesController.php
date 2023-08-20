@@ -27,6 +27,15 @@ class PagesController extends Controller
         return view('frontend.frontend',compact('promotions','sliders','links','main'));
     }
 
+    public function productDetails(){
+        $main = Page::first();
+        $promotions = Promotion::all();
+        $sliders = Slider::all();
+        $links = Link::all();
+        return view('frontend.product_details',compact('promotions','sliders','links','main'));
+    }
+
+
     public function Dashboard(){
         return view('admin.dashboard');
     }

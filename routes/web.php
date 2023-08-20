@@ -27,6 +27,9 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [PagesController::class, 'index'])->name('edit.frontend');
 
+Route::get('/product_details', [PagesController::class, 'productDetails'])->name('product.details');
+
+
 Route::get('admin/dashboard',[PagesController::class,'Dashboard'])->name('admin.dashboard');
 //Promotion
 Route::get('promotion/create',[PagesController::class,'PromotionCreate'])->name('promotion.create');

@@ -5,13 +5,13 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
     <head>
         <!-- Title -->
-        <title>{{ $main->site_name }}</title>
+        <title>dfsfsd</title>
         <!-- Required Meta Tags Always Come First -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="{{ $main->favicon }}">
+        <link rel="shortcut icon" href="">
 
 
         <!-- Google Fonts -->
